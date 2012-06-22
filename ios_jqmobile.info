@@ -48,3 +48,9 @@ exclude[css][] = 'modules/taxonomy/taxonomy.css'
 exclude[css][] = 'modules/tracker/tracker.css'
 exclude[css][] = 'modules/update/update.css'
 exclude[css][] = 'modules/user/user.css'
+
+; Additions to the mobile_jquery module exclusions
+
+; CSS exclusions
+exclude[css][] = 'misc/ui/jquery.ui.core.css'
+exclude[css][] = 'misc/ui/jquery.ui.theme.css'
