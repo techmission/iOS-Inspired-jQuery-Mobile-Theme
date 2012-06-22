@@ -70,37 +70,34 @@
  */
 ?>
 
-<div data-role="page"> 
+<?php 
+// Show the regular page content unless a query string parameter is set.
+if(!$show_test_content): ?>
+<div data-role="page">
+    <!-- site name and title in header --> 
 	<div data-role="header">
-	    <?php 
-	    // Print the site name and title in the header.
-	      if(!empty($site_name)) { ?> 
-		  <h1><?php print $site_name . ':' . $title; ?></h1>
-		<?php }
-		else {
-		?>
+	    <?php if(!empty($site_name) && !empty($title)): ?> 
+		  <h1><?php print $site_name . ' : ' . $title; ?></h1>
+		<?php elseif(!empty($title)): ?>
 		  <h1><?php print $title; ?></h1>
-		<?php } ?>
+		<?php elseif(!empty($site_name)): ?>
+		  <h1><?php print $site_name; ?></h1>
+		<?php endif; ?>
 	</div><!-- /header --> 
     
-    <!-- TODO: use the actual page content (will require some theming overrides) -->
 	<div data-role="content"> 
-		<p>Welcome to the iOS-Inspired jQuery Mobile theme by <a href="http://twitter.com/taitems" target="_blank">@taitems</a>. Feel free to have a look around and report and bugs to the <a href="https://github.com/taitems/iOS-Inspired-jQuery-Mobile-Theme/issues" target="_blank">GitHub issues page</a>.</p> 
-			
-		<ul data-role="listview" data-inset="true"> 
-			<li><a href="#headers">Header Bars</a></li> 
-			<li><a href="#headerButtons">Header Buttons</a></li> 
-			<li><a href="#footerTabs">Footer Tabs</a></li> 
-			<li><a href="#formElements">Form Elements</a></li> 
-			<li><a href="#listViews">List Views</a></li> 
-			<li><a href="#dialogs">Dialogs</a></li> 
-			<!--<li><a href="api-pages.html">API documentation</a></li>--> 
-		</ul> 
-					
-		<br />
-			
-		<br />
- 
-		</div><!-- /ui-body wrapper -->	
+		<?php print render($page['content']); ?> 
+	</div><!-- /ui-body wrapper -->
+	
+	<?php if(!empty($page['footer'])): ?>
+	<!-- footer is used for navigation, if present -->
+	<div data-role="footer" data-position="fixed">
+	  <div data-role="navbar">
+			<?php print render($page['footer']); ?>
+		</div><!-- /navbar -->
+	</div><!-- /footer -->
+	<?php endif; ?>	
 </div><!-- /page --> 
-
+<?php else: ?>
+  <?php print $test_content; ?>
+<?php endif; ?>
