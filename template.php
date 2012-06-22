@@ -52,9 +52,9 @@ function ios_jqmobile_preprocess_node(&$variables) {
  foreach(_ios_jqmobile_term_fields() as $fieldname) {
   // Iterate through the fields, load, and render the data.
   $items = field_get_items('node', $node, $fieldname);
-  print_r($items);
+  //print_r($items);
   foreach($items as $delta => $item) {
-    $term_value = field_view_value('node', $node, $fieldname, $item[$delta], array('type' => 'text_plain'));
+    $term_value = l($item[$delta]['taxonomy_term']->name, 'taxonomy/term' . $item[$delta]['tid']);
     print_r($term_value);
     $term_values[$fieldname][] = render($term_value);
   }
