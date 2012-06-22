@@ -63,7 +63,7 @@ function ios_jqmobile_preprocess_node(&$variables) {
  $variables['term_list'] = implode(',', $term_values);
  // Hide term fields from showing as part of the content.
  foreach($variables['content'] as $element_name => $element) {
-   if(strpos($element_name, 'field_term') == TRUE) {
+   if(strpos($element_name, 'field_term') !== FALSE) {
      hide($variables['content']['body'][$element_name]);
    }
  }
