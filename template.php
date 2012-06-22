@@ -53,9 +53,10 @@ function ios_jqmobile_preprocess_node(&$variables) {
   // Iterate through the fields, load, and render the data.
   $items = field_get_items('node', $node, $fieldname);
   //print_r($items);
+  // field_view_value() would've worked since I was iterating and collecting.
   foreach($items as $delta => $item) {
     print_r($item);
-    $term_value = l($item[$delta]['taxonomy_term']->name, 'taxonomy/term' . $item[$delta]['tid']);
+    $term_value = l($item['taxonomy_term']->name, 'taxonomy/term/' . $item['tid']);
     print_r($term_value);
     $term_values[$fieldname][] = $term_value;
   }
