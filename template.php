@@ -64,15 +64,15 @@ function ios_jqmobile_preprocess_node(&$variables) {
  // Hide term fields from showing as part of the content.
  foreach($variables['content'] as $element_name => $element) {
    if(strpos($element_name, 'field_term') == TRUE) {
-     hide($variables['content'][$element_name]);
+     hide($variables['content']['body'][$element_name]);
    }
  }
  //hide($variables['content'][$fieldname]);
  //hide($variables['content']['body'][$fieldname]);
  // @todo: Add variables as needed.
  // Hide the comments and links for explicit printing later, not as part of $content.
- hide($content['comments']);
- hide($content['links']);
+ hide($variables['content']['comments']);
+ hide($variables['content']['links']);
 }
 
 /* Defines which term fields should be pulled in theming. */
