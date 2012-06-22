@@ -54,7 +54,7 @@ function ios_jqmobile_preprocess_node(&$variables) {
   $items = field_get_items('node', $node, $fieldname);
   print_r($items);
   foreach($items as $delta => $item) {
-    $term_value = field_view_value('node', $node, $fieldname, $item[$delta]);
+    $term_value = field_view_value('node', $node, $fieldname, $item[$delta], array('type' => 'text_plain'));
     print_r($term_value);
     $term_values[$fieldname][] = render($term_value);
   }
@@ -71,6 +71,8 @@ function ios_jqmobile_preprocess_node(&$variables) {
  //hide($variables['content'][$fieldname]);
  //hide($variables['content']['body'][$fieldname]);
  // @todo: Add variables as needed.
+ // Hide flags.
+ hide($variables['content']['flags']);
  // Hide the comments and links for explicit printing later, not as part of $content.
  hide($variables['content']['comments']);
  hide($variables['content']['links']);
