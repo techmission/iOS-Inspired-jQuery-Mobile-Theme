@@ -52,8 +52,10 @@ function ios_jqmobile_preprocess_node(&$variables) {
  foreach(_ios_jqmobile_term_fields() as $field) {
   // Hide from showing as part of the content.
   hide($content[$field]);
+  hide($content['body'][$field]);
   // Get the data from the field.
   $items = field_get_items('node', $node, $field);
+  print_r($items);
   foreach($items as $delta => $item) {
     $term_value = field_view_value('node', $node, $field, $item[$delta]);
     print_r($term_value);
