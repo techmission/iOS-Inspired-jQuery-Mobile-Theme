@@ -47,12 +47,14 @@ function ios_jqmobile_preprocess_page(&$variables) {
 function ios_jqmobile_preprocess_node(&$variables) {
  // Creates an imploded list of taxonomy terms for display on the node.
  $node = $variables['node'];
- print_r($content);
+ print_r($variables['content']);
  $term_values = array();
  foreach(_ios_jqmobile_term_fields() as $field) {
   $items = field_get_items('node', $node, $field);
   foreach($items as $delta => $term) {
-    $term_values[$field][] = render(field_view_value('node', $node, $field, $item[$delta]));
+    $term_value = field_view_value('node', $node, $field, $item[$delta]);
+    print_r($term_value);
+    $term_values[$field][] = render($term_value);
   }
   $term_values[$field] = implode(',', $term_values[$field]);
  }
