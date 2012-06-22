@@ -51,11 +51,13 @@
 	<title><?php print $head_title; ?></title>
 	<!-- TODO: switch to using $styles in .info and template.php, once removed broken Drupal styles -->
 	<link rel="stylesheet"  href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
-	<link rel="stylesheet" href="../styles/style.css" />
+	<!--  <link rel="stylesheet" href="../styles/style.css" />-->
+	<?php print $styles; ?>
 	<!-- TODO: switch to using $scripts in template.php, once removed broken Drupal scripts -->
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
-	<script src="../scripts/script.js"></script>
+	<!-- <script src="../scripts/script.js"></script>-->
+	<?php print $scripts; ?>
 </head> 
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <?php print $page_top; ?>
