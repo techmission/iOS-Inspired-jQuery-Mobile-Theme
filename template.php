@@ -47,6 +47,21 @@ function ios_jqmobile_preprocess_page(&$variables) {
 function ios_jqmobile_preprocess_node(&$variables) {
  // @todo: Add variables as needed.
  print_r($variables['node']);
+ $term_values = array();
+ foreach(_ios_jqmobile_term_fields() as $field) {
+  $items = field_get_items('node', $variables['node'], $field);
+  foreach($items as $delta => $term) {
+    $term_values[$field][] = field_view_value('node', $node, $field, $item[$delta]);
+  }
+  $term_values[$field] = implode(',', $term_values[$field]);
+ }
+ $variables['term_list'] = implode($term_values);
+}
+
+/* Defines which term fields should be pulled in theming. */
+function _ios_jqmobile_term_fields() {
+ return array('field_term_year', 'field_term_topic', 'field_term_speaker', 'field_term_org_affiliation',
+   'field_term_category', 'field_term_other_tags');
 }
 
 /**
