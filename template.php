@@ -70,6 +70,9 @@ function ios_jqmobile_preprocess_node(&$variables) {
  //hide($variables['content'][$fieldname]);
  //hide($variables['content']['body'][$fieldname]);
  // @todo: Add variables as needed.
+ // Hide the comments and links for explicit printing later, not as part of $content.
+ hide($content['comments']);
+ hide($content['links']);
 }
 
 /* Defines which term fields should be pulled in theming. */
