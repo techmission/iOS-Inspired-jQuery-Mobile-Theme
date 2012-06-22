@@ -46,6 +46,7 @@ function ios_jqmobile_preprocess_page(&$variables) {
  */
 function ios_jqmobile_preprocess_node(&$variables) {
  // @todo: Add variables as needed.
+ print_r($variables['node']);
 }
 
 /**
