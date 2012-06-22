@@ -49,19 +49,20 @@ function ios_jqmobile_preprocess_node(&$variables) {
  $node = $variables['node'];
  //print_r($variables['content']);
  $term_values = array();
- foreach(_ios_jqmobile_term_fields() as $fieldname => $field) {
-  // Hide from showing as part of the content.
-  hide($content[$field]);
-  hide($content['body'][$field]);
-  // Get the data from the field.
-  $items = field_get_items('node', $node, $field);
+ foreach(_ios_jqmobile_term_fields() as $fieldname) {
+  // Iterate through the fields.
+  $items = field_get_items('node', $node, $fieldname);
   print_r($items);
   foreach($items as $delta => $item) {
     $term_value = field_view_value('node', $node, $fieldname, $item[$delta]);
     print_r($term_value);
-    $term_values[$field][] = render($term_value);
+    $term_values[$fieldname][] = render($term_value);
   }
-  $term_values[$field] = implode(',', $term_values[$field]);
+  $term_values[$fieldname] = implode(',', $term_values[$fieldname]);
+  // Hide from showing as part of the content.
+  // Get the data from the field.
+  hide($variables['content'][$fieldname]);
+  hide($variables['content']['body'][$fieldname]);
  }
  $variables['term_list'] = implode(',', $term_values);
  // @todo: Add variables as needed.
