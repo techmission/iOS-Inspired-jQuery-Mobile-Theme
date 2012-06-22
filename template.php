@@ -12,9 +12,14 @@ function ios_jqmobile_theme($existing, $type, $name, $path) {
 }
 
 /**
+ * Load the proper CSS and JS.
  * Add meta tags for use in <head>.
  */
 function ios_jqmobile_preprocess_html(&$variables) {
+ // Add the libraries that are needed.
+ if(module_exists('ios_jqm')) {
+   ios_jqm_add_libraries();
+ }
  // @todo: Add the meta tags.
 }
 
