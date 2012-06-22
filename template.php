@@ -16,11 +16,16 @@ function ios_jqmobile_theme($existing, $type, $name, $path) {
  * Add meta tags for use in <head>.
  */
 function ios_jqmobile_preprocess_html(&$variables) {
- // Add the libraries that are needed.
+ // Check that the helper module is enabled.
  if(module_exists('ios_jqm')) {
+   // Add the libraries that are needed.
    ios_jqm_add_libraries();
+   // Add the meta tags.
+   ios_jqm_add_meta('charset'); // set charset
+   $viewport_settings = ios_jqm_get_viewport_settings();
+   ios_jqm_add_meta('viewport', $viewport_settings);
+   ios_jqm_add_meta('apple-mobile-web-app-capable', 'yes');
  }
- // @todo: Add the meta tags.
 }
 
 /**
