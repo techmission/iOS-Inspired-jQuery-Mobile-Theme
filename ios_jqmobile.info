@@ -1,5 +1,5 @@
 name = ios_jqmobile
-description = iOS-Inspired jQuery Mobile Theme
+description = iOS-Inspired jQuery Mobile Theme, based on the theme by @taitems
 package = Mobile
 version = 7.x-1.0-alpha1
 core = 7.x
