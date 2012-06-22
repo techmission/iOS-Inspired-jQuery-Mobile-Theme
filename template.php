@@ -54,9 +54,10 @@ function ios_jqmobile_preprocess_node(&$variables) {
   $items = field_get_items('node', $node, $fieldname);
   //print_r($items);
   foreach($items as $delta => $item) {
+    print_r($item);
     $term_value = l($item[$delta]['taxonomy_term']->name, 'taxonomy/term' . $item[$delta]['tid']);
     print_r($term_value);
-    $term_values[$fieldname][] = render($term_value);
+    $term_values[$fieldname][] = $term_value;
   }
   $term_values[$fieldname] = implode(',', $term_values[$fieldname]);
  }
