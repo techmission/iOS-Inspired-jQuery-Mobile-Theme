@@ -91,11 +91,11 @@
 
   <div class="content"<?php print $content_attributes; ?>>
   <?php print render($content); ?>
-  <?php print render($content['links']); ?>
-  <?php print render($content['comments']); ?>
-  
   <?php if(!empty($term_list)): ?>
     <p><strong>Categories: </strong><?php print $term_list; ?></p>
   <?php endif; ?>
+  <?php print render($content['links']); ?>
+  <?php print render($content['comments']); ?>
+
   </div>
 </div>

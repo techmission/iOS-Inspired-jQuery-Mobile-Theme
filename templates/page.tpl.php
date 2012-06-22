@@ -74,11 +74,9 @@
 // Show the regular page content unless a query string parameter is set.
 if(!$show_test_content): ?>
 <div data-role="page">
-    <!-- site name and title in header --> 
+    <!-- title or site name in header --> 
 	<div data-role="header">
-	    <?php if(!empty($site_name) && !empty($title)): ?> 
-		  <h1><?php print $site_name . ' : ' . $title; ?></h1>
-		<?php elseif(!empty($title)): ?>
+		<?php if(!empty($title)): ?>
 		  <h1><?php print $title; ?></h1>
 		<?php elseif(!empty($site_name)): ?>
 		  <h1><?php print $site_name; ?></h1>
