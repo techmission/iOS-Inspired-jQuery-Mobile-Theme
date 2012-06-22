@@ -42,3 +42,41 @@ function ios_jqmobile_preprocess_page(&$variables) {
 function ios_jqmobile_preprocess_node(&$variables) {
  // @todo: Add variables as needed.
 }
+
+/**
+ * Fix Javascript compatibility issue with jPlayer.
+ * @todo: Find a more elegant solution. 
+ */
+function ios_jqmobile_preprocess_jplayer(&$vars) {
+ // Determine a unique player ID.
+ $ids = entity_extract_ids($vars['entity_type'], $vars['entity']);
+ $vars['player_id'] = _jplayer_check_id('jplayer-' . $vars['entity_type'] . '-' . $ids[0] . '-' . str_replace('_', '-', $vars['field_name']));
+ 
+ $vars['mode'] = $vars['settings']['mode'];
+ 
+ $player = jplayer_sort_files($vars['items'], $vars['player_id'], $vars['mode']);
+ 
+ $vars['playlist'] = theme('jplayer_item_list', array('items' => $player['playlist']));
+ $vars['type'] = $player['type'];
+ 
+ // Add player settings
+ $player = array(
+   'jplayerInstances' => array(
+     $vars['player_id'] => array(
+       'files' => $player['files'],
+       'solution' => $vars['settings']['solution'],
+       'supplied' => $player['extensions'],
+       'preload' => $vars['settings']['preload'],
+       'volume' => $vars['settings']['volume'] / 100,
+       'muted' => (boolean)$vars['settings']['muted'],
+       'autoplay' => (boolean)$vars['settings']['autoplay'],
+       'repeat' => $vars['settings']['repeat'],
+       'backgroundColor' => $vars['settings']['backgroundColor'],
+     ),
+   ),
+ );
+ 
+  $player_js = '<script type="text/javascript">jQuery.extend(Drupal.settings, ' . 
+    drupal_json_encode($player) . '); Drupal.attachBehaviors();</script>';
+  $vars['inline_js'] = $player_js;
+}
