@@ -2,8 +2,10 @@
 
 /**
  * @file
- * Default theme implementation to display the basic html structure of a single
- * Drupal page.
+ * Displays the basic HTML structure of the Drupal page.
+ * Note that the template.php is pulling in the proper styles, scripts, and
+ * meta tags from the ios_jqm helper module, which is required in order for
+ * this theme to work properly.
  *
  * Variables:
  * - $css: An array of CSS files for the current page.
@@ -44,11 +46,7 @@
 ?><!DOCTYPE html> 
 <html> 
 	<head>
-	<!-- TODO: add $head and set these meta tags in template.php -->
 	<?php print $head; ?> 
-	<meta charset="utf-8" /> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"> 	 
-	<meta name="apple-mobile-web-app-capable" content="yes">
 	<title><?php print $head_title; ?></title>
 	<?php print $styles; ?>
 	<?php print $scripts; ?>
