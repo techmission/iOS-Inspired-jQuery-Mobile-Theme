@@ -60,7 +60,7 @@ function ios_jqmobile_preprocess_node(&$variables) {
       $term_values[$fieldname][] = $term_value;
     }
   }
-  if(is_array($term_values[$fieldname]) && count($term_values[$fieldname]) <= 0) {
+  if(is_array($term_values[$fieldname]) && count($term_values[$fieldname]) > 0) {
     $term_values[$fieldname] = implode(', ', $term_values[$fieldname]);
   }
   else {
@@ -74,7 +74,7 @@ function ios_jqmobile_preprocess_node(&$variables) {
       hide($variables['content'][$element_name]);
    }
  }
- dpm(array_keys($variables['content']));
+ dsm(print_r(array_keys($variables['content']), TRUE));
  // Hide flags.
  hide($variables['content']['flag']);
  // Hide the comments and links for explicit printing later, not as part of $content.
