@@ -93,33 +93,35 @@ function _ios_jqmobile_term_fields() {
  * @todo: Find a more elegant solution. 
  */
 function ios_jqmobile_preprocess_jplayer(&$vars) {
- // Determine a unique player ID.
- $ids = entity_extract_ids($vars['entity_type'], $vars['entity']);
- $vars['player_id'] = _jplayer_check_id('jplayer-' . $vars['entity_type'] . '-' . $ids[0] . '-' . str_replace('_', '-', $vars['field_name']));
+  // Determine a unique player ID.
+  $ids = entity_extract_ids($vars['entity_type'], $vars['entity']);
+  $vars['player_id'] = _jplayer_check_id('jplayer-' . $vars['entity_type'] . '-' . $ids[0] . '-' . str_replace('_', '-', $vars['field_name']));
  
  $vars['mode'] = $vars['settings']['mode'];
  
- $player = jplayer_sort_files($vars['items'], $vars['player_id'], $vars['mode']);
+  // Get the field info so we can figure out what type it is.
+  $field_info = field_info_field($vars['field_name']);
+  $player = jplayer_sort_files($vars['items'], $vars['player_id'], $vars['mode'], $field_info['type']);
+  $vars['playlist'] = theme('jplayer_item_list', array('items' => $player['playlist']));
+  $vars['type'] = $player['type'];
  
- $vars['playlist'] = theme('jplayer_item_list', array('items' => $player['playlist']));
- $vars['type'] = $player['type'];
- 
- // Add player settings
- $player = array(
-   'jplayerInstances' => array(
-     $vars['player_id'] => array(
-       'files' => $player['files'],
-       'solution' => $vars['settings']['solution'],
-       'supplied' => $player['extensions'],
-       'preload' => $vars['settings']['preload'],
-       'volume' => $vars['settings']['volume'] / 100,
-       'muted' => (boolean)$vars['settings']['muted'],
-       'autoplay' => (boolean)$vars['settings']['autoplay'],
-       'repeat' => $vars['settings']['repeat'],
-       'backgroundColor' => $vars['settings']['backgroundColor'],
-     ),
-   ),
- );
+  // Add player settings
+  $player = array(
+    'jplayerInstances' => array(
+      $vars['player_id'] => array(
+        'files' => $player['files'],
+        'solution' => $vars['settings']['solution'],
+        'supplied' => $player['extensions'],
+        'preload' => $vars['settings']['preload'],
+        'volume' => $vars['settings']['volume'] / 100,
+        'muted' => (boolean)$vars['settings']['muted'],
+        'autoplay' => (boolean)$vars['settings']['autoplay'],
+        'repeat' => $vars['settings']['repeat'],
+        'backgroundColor' => $vars['settings']['backgroundColor'],
+        'continuous' => $vars['settings']['continuous'],
+      ),
+    ),
+  );
  
   $player_js = '<script type="text/javascript">jQuery.extend(Drupal.settings, ' . 
     drupal_json_encode($player) . '); Drupal.attachBehaviors();</script>';
