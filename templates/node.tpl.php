@@ -95,7 +95,6 @@
     <p><strong>Categories: </strong><?php print $term_list; ?></p>
   <?php endif; ?>
   <?php print render($content['links']); ?>
-  <?php print render($content['comments']); ?>
-
+  <!-- don't display comments form on mobile -->
   </div>
 </div>

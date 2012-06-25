@@ -74,10 +74,9 @@ function ios_jqmobile_preprocess_node(&$variables) {
       hide($variables['content'][$element_name]);
    }
  }
- dsm(array_keys($variables['content']['links']));
  // Hide flags.
  hide($variables['content']['links']['flag']);
- // Hide the comments and links for explicit printing later, not as part of $content.
+ // Hide the comments and links so they don't show as part of $content variable.
  hide($variables['content']['comments']);
  hide($variables['content']['links']);
  // @todo: Add variables as needed.
