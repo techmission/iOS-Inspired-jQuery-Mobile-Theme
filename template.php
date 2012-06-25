@@ -51,12 +51,21 @@ function ios_jqmobile_preprocess_node(&$variables) {
  foreach(_ios_jqmobile_term_fields() as $fieldname) {
   // Iterate through the fields, load, and render the data.
   $items = field_get_items('node', $node, $fieldname);
-  // field_view_value() would've worked since I was iterating and collecting.
+  $term_values[$fieldname] = array();
   foreach($items as $delta => $item) {
-    $term_value = l($item['taxonomy_term']->name, 'taxonomy/term/' . $item['tid']);
-    $term_values[$fieldname][] = $term_value;
+    if(!empty($item['taxonomy_term']->name)) {
+      // Build the link for the term.
+      // field_view_value() would've worked since I was iterating and collecting.
+      $term_value = l($item['taxonomy_term']->name, 'taxonomy/term/' . $item['tid']);
+      $term_values[$fieldname][] = $term_value;
+    }
   }
-  $term_values[$fieldname] = implode(', ', $term_values[$fieldname]);
+  if(is_array($term_values[$fieldname]) && count($term_values[$fieldname]) <= 0) {
+    $term_values[$fieldname] = implode(', ', $term_values[$fieldname]);
+  }
+  else {
+    unset($term_values[$fieldname]);
+  }
  }
  $variables['term_list'] = implode(', ', $term_values);
  // Hide term fields from showing as part of the content.
@@ -65,6 +74,7 @@ function ios_jqmobile_preprocess_node(&$variables) {
       hide($variables['content'][$element_name]);
    }
  }
+ dpm(array_keys($variables['content']));
  // Hide flags.
  hide($variables['content']['flag']);
  // Hide the comments and links for explicit printing later, not as part of $content.

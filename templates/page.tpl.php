@@ -84,6 +84,7 @@ if(!$show_test_content): ?>
 	</div><!-- /header --> 
     
 	<div data-role="content"> 
+	    <?php print $messages; ?>  
 		<?php print render($page['content']); ?> 
 	</div><!-- /ui-body wrapper -->
 	
