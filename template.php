@@ -74,9 +74,9 @@ function ios_jqmobile_preprocess_node(&$variables) {
       hide($variables['content'][$element_name]);
    }
  }
- dsm(print_r(array_keys($variables['content']), TRUE));
+ dsm(array_keys($variables['content']['links']));
  // Hide flags.
- hide($variables['content']['flag']);
+ hide($variables['content']['links']['flag']);
  // Hide the comments and links for explicit printing later, not as part of $content.
  hide($variables['content']['comments']);
  hide($variables['content']['links']);

@@ -1,3 +1,11 @@
+/* Drupal styles */
+
+.element-invisible {
+  display: none;	
+}
+
+/* iOS jQuery Mobile Styles */
+
 /* === PAGE BACKGROUND AND GENERICS === */
 .ui-page, .ui-mobile-viewport {
 	background: url(../images/tiling_stripes.gif);
