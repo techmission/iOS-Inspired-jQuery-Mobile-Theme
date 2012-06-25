@@ -92,7 +92,9 @@ if(!$show_test_content): ?>
 	<!-- footer is used for navigation, if present -->
 	<div data-role="footer" data-position="fixed">
 	  <div data-role="navbar">
-			<?php print render($page['footer']); ?>
+			<?php 
+			dpm($page['footer']);
+			print render($page['footer']); ?>
 		</div><!-- /navbar -->
 	</div><!-- /footer -->
 	<?php endif; ?>	
