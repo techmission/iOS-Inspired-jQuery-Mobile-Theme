@@ -92,6 +92,7 @@ function _ios_jqmobile_term_fields() {
  * Add variables to the taxonomy term template.
  */
 function ios_jqmobile_preprocess_taxonomy_term(&$variables) {
+  dpm($variables);
   if($variables['view_mode'] == 'taxonomy_term_image') {
     dpm($variables);
   }
