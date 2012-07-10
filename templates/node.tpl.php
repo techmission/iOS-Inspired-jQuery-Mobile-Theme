@@ -92,7 +92,7 @@
   <div class="content"<?php print $content_attributes; ?>>
   <?php print render($content); ?>
   <?php if(!empty($term_list)): ?>
-    <p><strong>Categories: </strong><?php print $term_list; ?></p>
+    <!--  <p><strong>Categories: </strong><?php print $term_list; ?></p>-->
   <?php endif; ?>
   <?php print render($content['links']); ?>
   <!-- don't display comments form on mobile -->
