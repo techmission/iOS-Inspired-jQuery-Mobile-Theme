@@ -82,7 +82,7 @@ function ios_jqmobile_preprocess_node(&$variables) {
  // @todo: Add variables as needed.
 }
 
-/* Defines which term fields should be pulled in theming. */
+/* Defines which term fields should be pulled in theming. Not currently used. */
 function _ios_jqmobile_term_fields() {
  return array('field_term_year', 'field_term_topic', 'field_term_speaker', 'field_term_org_affiliation',
    'field_term_category', 'field_term_other_tags');
@@ -95,4 +95,11 @@ function ios_jqmobile_preprocess_taxonomy_term(&$variables) {
   if($variables['view_mode'] == 'taxonomy_term_image') {
     // nothing special.
   }
+}
+
+/**
+ * Modify the display of list views for jQuery Mobile.
+ */
+function ios_jqmobile_preprocess_views_view_list(&$variables) {
+ $variables['list_type_prefix'] = '<' . $handler->options['type'] . ' data-role="listview" data-inset="true">';
 }
