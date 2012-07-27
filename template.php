@@ -101,5 +101,5 @@ function ios_jqmobile_preprocess_taxonomy_term(&$variables) {
  * Modify the display of list views for jQuery Mobile.
  */
 function ios_jqmobile_preprocess_views_view_list(&$variables) {
- $variables['list_type_prefix'] = '<' . $handler->options['type'] . ' data-role="listview" data-inset="true">';
+ $variables['list_type_prefix'] = '<' . $variables['view']->style_plugin->options['type'] . ' data-role="listview" data-inset="true">';
 }
